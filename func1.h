@@ -1,52 +1,76 @@
 #ifndef FUNC1_H
 #define FUNC1_H
 
+
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
 using namespace std;
+
 typedef double TE;
 
-struct node{
-	double value;
-	node *next = NULL;
+struct List{
+	public:
+		List();
+		~List();
+		void push_back(TE data);
+		int GetSize(){return Size;}
+		
+		TE& operator[](const int index);
+		
+		
+	private:
+		struct Node{
+			public:
+				Node *pNext;
+				TE data;
+				Node(TE data = TE(), Node *pNext = nullptr){
+					this->data = data;
+					this->pNext = pNext;
+				}
+		};
+	public:
+		int Size;
+		Node *head;
+		
 };
 
-struct stack{
-	node *head = NULL;
-} L1, L2, Lresult;
 
-void add(double value){
-	node *n = new node();
-	n->value = value;
-	n->next = stck.head;
-	фыфоыадыалдыфждфолад.head = n;
+List::List(){
+	Size = 0;
+	head = nullptr;
 }
 
 
-
-/*void AddValue(int value, node **list)
-{
-  node *ptr = new node;
-  if (ptr)
-  {
-    ptr->value = value;
-    ptr->next = NULL;
-    if(list == NULL)
-    {
-      *list = ptr;
-    }
-    else
-    {
-      node *p;
-      p = *list;
-      while (p->next)
-        p = p->next;
-      p->next = ptr;
-    }
-  }
+List::~List(){
+	
 }
-*/
+
+void List::push_back(TE data){
+	if(head == nullptr){
+		head = new Node(data);
+	}
+	else{
+		Node *current = this->head;
+		while(current->pNext != nullptr){
+			current = current->pNext;
+		}
+		current->pNext = new Node(data);
+	}
+	Size++;
+}
+
+
+TE& List::operator[](const int index){
+	Node *current = this -> head;
+	int counter = 0;
+	while(current!=nullptr){
+		if(counter == index){
+			return current->data;
+		}
+		current = current->pNext;
+		counter++;
+	}
+}
 
 
 #endif
