@@ -2,11 +2,22 @@
 #define FUNC1_H
 
 
-#include <iostream>
+#include <iostream>	
 #include <fstream>
 using namespace std;
 
 typedef double TE;
+
+struct Node{
+	public:
+		Node *pNext;
+		TE data;
+		Node(TE data = TE(), Node *pNext = nullptr){
+		this->data = data;
+		this->pNext = pNext;
+	}
+
+};
 
 struct List{
 	public:
@@ -14,21 +25,8 @@ struct List{
 		~List();
 		void push_back(TE data);
 		int GetSize(){return Size;}
-		
 		TE& operator[](const int index);
-		
-		
-	private:
-		struct Node{
-			public:
-				Node *pNext;
-				TE data;
-				Node(TE data = TE(), Node *pNext = nullptr){
-					this->data = data;
-					this->pNext = pNext;
-				}
-		};
-	public:
+		Node *operator()(const int index);
 		int Size;
 		Node *head;
 		
@@ -45,6 +43,7 @@ List::~List(){
 	
 }
 
+
 void List::push_back(TE data){
 	if(head == nullptr){
 		head = new Node(data);
@@ -58,9 +57,21 @@ void List::push_back(TE data){
 	}
 	Size++;
 }
+	
 
+Node* List::operator()(const int index){	
+	Node *current = this -> head;
+	int counter = 0;
+	while(current!=nullptr){
+		if(counter == index){
+			return current->pNext;
+		}
+		current = current->pNext;
+		counter++;
+	}
+}
 
-TE& List::operator[](const int index){
+TE& List::operator[](const int index){	
 	Node *current = this -> head;
 	int counter = 0;
 	while(current!=nullptr){
@@ -71,6 +82,7 @@ TE& List::operator[](const int index){
 		counter++;
 	}
 }
+
 
 
 #endif
