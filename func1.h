@@ -42,7 +42,17 @@ List::List(){
 
 
 List::~List(){
-	
+	while( head ) {
+        remove();
+    }
+}
+
+void List::remove() {
+    if( head ) {
+        Node* newHead = head->pNext;
+        delete head;
+        head = newHead;
+    }
 }
 
 void List::push_back(TE data){
