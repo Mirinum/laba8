@@ -1,5 +1,4 @@
 #include "func1.h"
-#include "func1.cpp"
 
 int main(){
 	List L1;

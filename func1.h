@@ -4,7 +4,6 @@
 
 #include <iostream>	
 #include <fstream>
-#include "func1.cpp"
 using namespace std;
 
 typedef double TE;
@@ -99,6 +98,6 @@ TE& List::operator[](const int index){
 }
 
 
-int merge(List& L1, List& L2);
+int merge(List&, List&);
 
 #endif
