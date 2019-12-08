@@ -4,9 +4,11 @@
 
 #include <iostream>	
 #include <fstream>
+#include "func1.cpp"
 using namespace std;
 
 typedef double TE;
+
 
 struct Node{
 	public:
@@ -27,6 +29,7 @@ struct List{
 		int GetSize(){return Size;}
 		TE& operator[](const int index);
 		Node *operator()(const int index);
+		Node *pNext(const int index);
 		int Size;
 		Node *head;
 		
@@ -64,6 +67,18 @@ Node* List::operator()(const int index){
 	int counter = 0;
 	while(current!=nullptr){
 		if(counter == index){
+			return current;
+		}
+		current = current->pNext;
+		counter++;
+	}
+}
+
+Node* List::pNext(const int index){	
+	Node *current = this -> head;
+	int counter = 0;
+	while(current!=nullptr){
+		if(counter == index){
 			return current->pNext;
 		}
 		current = current->pNext;
@@ -84,5 +99,6 @@ TE& List::operator[](const int index){
 }
 
 
+int merge(List& L1, List& L2);
 
 #endif
