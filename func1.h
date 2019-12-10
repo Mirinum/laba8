@@ -4,7 +4,7 @@
 
 #include <iostream>	
 #include <fstream>
-#include <assert.h>
+#include <cstddef>
 using namespace std;
 
 typedef double TE;
@@ -27,8 +27,8 @@ struct List{
 		void push_back(TE data);
 		int GetSize(){return Size;}
 		TE& operator[](const int index);
-		Node *operator()(const int index);
-		Node *pNext(const int index);
+		Node &operator()(const int index);
+		Node &pNext(const int index);
 		int Size;
 		Node *head;
 		

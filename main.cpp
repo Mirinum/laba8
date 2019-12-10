@@ -20,17 +20,15 @@ int main(){
 		cin >> l;
 		L2.push_back(l);
 	}
-	List* l1 = &L1;
-	List* l2 = &L2;
 	merge(L1, L2);
 	int l = 0;
-	while(L1(l)!=nullptr){
+	while(L1[l] != NULL){
 		cout << L1[l] << endl;
 		l++;
 	}
 	ofstream file("file.txt");
 	l = 0;
-	while(L1(l)!=nullptr){
+	while(L1[l]!=NULL){
 		file << L1[l] << " ";
 		l++;
 	}
