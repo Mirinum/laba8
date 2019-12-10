@@ -20,6 +20,7 @@ int main(){
 		cin >> l;
 		L2.push_back(l);
 	}
+	cout <<"Shit";
 	merge(L1,L2);
 	for(int i=0; i < L1.Size; i++){
 		cout << L1[i] << endl;
