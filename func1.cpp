@@ -70,7 +70,38 @@ TE& List::operator[](const int index){
 
 
 int merge(List L1, List L2){
-	cout << L1[2] << L1[1];
-	cout << endl<<"Lol";
+	
+	while(L2.head){
+		
+		for(int i=L1.Size-1; i>=0; i--){
+			
+			for(int j=0; j<L2.Size; j++){
+				
+				if(L2[j] > L1[i]){
+					
+					Node* l1next = L1.pNext(i);
+					Node* l2next = L2.pNext(j);
+					
+					*L1.pNext(i) = *L2(j);
+					*L2.pNext(j) = *l1next;
+					L1.Size++;
+					if(j != 0){
+						
+						*L2.pNext(j-1) = *l2next;
+						L2.Size--;
+						
+					}
+					else {
+						L2.head = l2next;
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
 	return 0;
 }
