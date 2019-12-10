@@ -4,6 +4,7 @@
 
 #include <iostream>	
 #include <fstream>
+#include <assert.h>
 using namespace std;
 
 typedef double TE;
@@ -33,6 +34,6 @@ struct List{
 		
 };
 
-int merge(List L1, List L2);
+void merge(List L1, List L2);
 
 #endif

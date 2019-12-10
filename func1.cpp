@@ -67,52 +67,60 @@ TE& List::operator[](const int index){
 	}
 }
 
+void shit(List L1, List L2){
+	*L1(1) = *L2(1);
+}
 
 
-int merge(List L1, List L2){
-		
-	for(int i=L1.Size-1; i>0; i--){
-		
-		for(int j=0; j<L2.Size-1; j++){
+void merge(List L1, List L2){
+	if(L2.Size > 1){
+		if(L2[L2.Size-1] >= L1[L1.Size-1]){
+			*L1.pNext(L1.Size-1) = *L2(L2.Size-1);
+			*L2.pNext(L2.Size-2) = 0;
+			L1.Size++;
+			L2.Size--;
+		}
 			
-			if(L2[j] >= L1[i]){
+		for(int i=L1.Size-2; i>1; i--){
+			
+			for(int j=L2.Size-2; j>1; j--){
 				
-				Node* l1next = L1.pNext(i);
-				Node* l2next = L2.pNext(j);
-				*L1.pNext(i) = *L2(j);  //тут ошибка
-				L1.Size++;
+				if(L2[j] >= L1[i]){
+				
+					Node* l1next = L1.pNext(i);
+					Node* l2next = L2.pNext(j);
+					*L1.pNext(i) = *L2(j);  
 				if(l1next == nullptr){
-					*L2.pNext(j) = 0;
-				}
-				else{
-					*L2.pNext(j) = *l1next;
-				}
-				
-				L1.Size++;
-				if(j != 0){
+							*L2.pNext(j) = 0;
+					}
+					else{
+						*L2.pNext(j) = *l1next;
+					}
+						
+					L1.Size++;
+					if(j != 0){
+						
+						*L2.pNext(j-1) = *l2next;
+						L2.Size--;
+						
+					}
+					else {
+						
+						L2.head = l2next;
+						L2.Size--;
+					}
 					
-					*L2.pNext(j-1) = *l2next;
-					L2.Size--;
-					
 				}
-				else {
-					L2.head = l2next;
-					L2.Size--;
-				}
-				
-				break;
 				
 			}
 			
+			if(L2.Size == 1){
+				*L1.pNext(L1.Size-1) = *L2(0);
+				L2.head = nullptr;
+				L2.Size = 0;
+				L1.Size++;
+			}
+			
 		}
-		
-		if(L2.Size == 1){
-			*L1.pNext(L1.Size-1) = *L2(0);
-			L2.head = nullptr;
-			L2.Size = 0;
-		}
-		
 	}
-	
-	return 0;
 }

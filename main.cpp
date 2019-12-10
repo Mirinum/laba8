@@ -20,14 +20,21 @@ int main(){
 		cin >> l;
 		L2.push_back(l);
 	}
-	cout <<"Shit";
-	merge(L1,L2);
-	for(int i=0; i < L1.Size; i++){
-		cout << L1[i] << endl;
+	List* l1 = &L1;
+	List* l2 = &L2;
+	merge(L1, L2);
+	int l = 0;
+	while(L1(l)!=nullptr){
+		cout << L1[l] << endl;
+		l++;
 	}
 	ofstream file("file.txt");
-	for (int i=0; i < L1.Size; i++){
-		file << L1[i] << " ";
+	l = 0;
+	while(L1(l)!=nullptr){
+		file << L1[l] << " ";
+		l++;
 	}
+	
+
 	return 0;
 }
