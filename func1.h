@@ -34,7 +34,7 @@ struct List{
 		
 };
 
-void merge(List L1, List L2);
-void merge1(List L1, List L2);
+List merge(List L1, List L2);
+List sort(List L1);
 
 #endif

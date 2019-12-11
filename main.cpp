@@ -20,7 +20,8 @@ int main(){
 		cin >> l;
 		L2.push_back(l);
 	}
-	merge(L1, L2);
+	L1 = merge(L1, L2);
+	L1 = sort(L1);
 	int l = 0;
 	while(&L1(l) != nullptr){
 		cout << L1[l] << endl;

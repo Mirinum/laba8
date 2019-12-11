@@ -81,35 +81,44 @@ TE& List::operator[](const int index){
 	}
 }
 
-void merge(List L1, List L2){
-			
-	for(int j=0; j<L2.Size-1; j++){
-		
-		for(int i=0; i<L1.Size-1; i+=2){
-			
-			if(&L2.pNext(0) == nullptr) break;
-			
-			if(L2[0] >= L1[i]){
-				Node const * const l2 = &L2(0);
-				L2.head = &L2.pNext(0);
-				L2.pNext(0) = L1.pNext(i);
-				L1.pNext(i) = *l2;
-				L1.Size++;
-				L2.Size--;
-				break;
-				
-			}
-			
-		}
-		
-		if(L2.Size==1){
-			L1.pNext(L1.Size-1) = L2(0);
-			L1.Size++;
-			L2.head = nullptr;
-			L2.Size = 0;
-		}
-		
+List merge(List L1, List L2){
+	List merged;
+	for(int i=0; i<L1.Size;i++){
+		merged.push_back(L1[i]);
 	}
-	
+	for(int i=0; i<L2.Size;i++){
+		merged.push_back(L2[i]);
+	}
+	return merged;
 }
 
+List sort(List L1)
+{
+	Node *nextN = L1.head;
+	if (L1.head == NULL) return L1;
+	Node *node1;
+	Node *node2;
+	int check = 1;
+	node2 = new Node;
+	while (check)
+	{
+		check = 0;
+		node1 = L1.head;
+		nextN = node1->pNext;
+		while (nextN != 0)
+		{
+			if (double(node1->data) > double(nextN->data))
+			{
+				node2->data = node1->data;
+				node1->data = nextN->data;
+				nextN->data = node2->data;
+				check++;
+			}
+
+			node1 = nextN;
+			nextN = nextN->pNext;
+		}
+	}
+
+	return L1;
+}
