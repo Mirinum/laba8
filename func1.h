@@ -35,5 +35,6 @@ struct List{
 };
 
 void merge(List L1, List L2);
+void merge1(List L1, List L2);
 
 #endif

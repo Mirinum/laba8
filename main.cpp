@@ -22,13 +22,13 @@ int main(){
 	}
 	merge(L1, L2);
 	int l = 0;
-	while(&L1.pNext(l) != nullptr){
+	while(&L1(l) != nullptr){
 		cout << L1[l] << endl;
 		l++;
 	}
 	ofstream file("file.txt");
 	l = 0;
-	while(&L1.pNext(l) != nullptr){
+	while(&L1(l) != nullptr){
 		file << L1[l] << " ";
 		l++;
 	}

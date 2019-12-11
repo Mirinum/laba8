@@ -45,7 +45,7 @@ void List::push_back(TE data){
 }
 	
 
-Node& List::operator()(const int index){	
+Node& List::operator()(const int index){
 	Node *current = this -> head;
 	int counter = 0;
 	while(current!=nullptr){
@@ -81,33 +81,35 @@ TE& List::operator[](const int index){
 	}
 }
 
-void shit(List L1, List L2){
-	L1(1) = L2(1);
-}
-
-
 void merge(List L1, List L2){
 			
-	for(int i=0; i<L2.Size-1; i+=2){
+	for(int j=0; j<L2.Size-1; j++){
 		
-		for(int j=0; j<L2.Size-1; j++){
+		for(int i=0; i<L1.Size-1; i+=2){
+			
+			if(&L2.pNext(0) == nullptr) break;
 			
 			if(L2[0] >= L1[i]){
-			
-				Node const * const l1next = &L1.pNext(i);
-				Node const * const l2next = &L2.pNext(0);
-				L2.pNext(0) = l1next;
-				L1.pNext(i) = L2(0);
+				Node const * const l2 = &L2(0);
+				L2.head = &L2.pNext(0);
+				L2.pNext(0) = L1.pNext(i);
+				L1.pNext(i) = *l2;
 				L1.Size++;
-				L2.head = l2next;
 				L2.Size--;
-				
 				break;
 				
 			}
 			
 		}
 		
+		if(L2.Size==1){
+			L1.pNext(L1.Size-1) = L2(0);
+			L1.Size++;
+			L2.head = nullptr;
+			L2.Size = 0;
+		}
+		
 	}
 	
 }
+
