@@ -9,10 +9,24 @@ List::List(){
 	Size = 0;
 	head = nullptr;
 }
+/*)
+void List::pop_front()
+{
+	Node *temp = head;
 
+	head = head->pNext;
+
+	delete temp;
+
+	Size--;
+
+}*/
 
 List::~List(){
-	
+/*	while (head){
+		pop_front();
+	}
+	cout << endl << "List destroyed";*/
 }
 
 
@@ -74,29 +88,26 @@ void shit(List L1, List L2){
 
 void merge(List L1, List L2){
 			
-		for(int i=0; i<4; i+=2){
+	for(int i=0; i<L2.Size-1; i+=2){
+		
+		for(int j=0; j<L2.Size-1; j++){
 			
-			for(int j=0; j<L2.Size-1; j++){
+			if(L2[0] >= L1[i]){
+			
+				Node const * const l1next = &L1.pNext(i);
+				Node const * const l2next = &L2.pNext(0);
+				L2.pNext(0) = l1next;
+				L1.pNext(i) = L2(0);
+				L1.Size++;
+				L2.head = l2next;
+				L2.Size--;
 				
-				if(L2[0] >= L1[i]){
-				
-					Node *l1next = NULL;
-					l1next = &L1.pNext(i);
-					L2.pNext(0) = *l1next;
-					L1.pNext(i) = L2(0);
-					L1.Size++;	
-					Node *l2next = NULL;
-					l2next = &L2.pNext(0);	
-					L2.head = l2next;
-					L2.Size--;	
-					
-					break;
-					
-				}
-				
+				break;
 				
 			}
 			
 		}
 		
+	}
+	
 }
