@@ -1,12 +1,6 @@
 #ifndef FUNC1_H
 #define FUNC1_H
 
-
-#include <iostream>	
-#include <fstream>
-#include <cstddef>
-using namespace std;
-
 typedef double TE;
 
 struct Node{
@@ -25,10 +19,7 @@ struct List{
 		List();
 		~List();
 		void push_back(TE data);
-		int GetSize(){return Size;}
 		TE& operator[](const int index);
-		Node &operator()(const int index);
-		Node &pNext(const int index);
 		int Size;
 		Node *head;
 		

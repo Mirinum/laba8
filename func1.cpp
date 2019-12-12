@@ -1,26 +1,16 @@
 #include "func1.h"
 
+
+
+
+#include <iostream>
+
 using namespace std;
-
-
-
 
 List::List(){
 	Size = 0;
 	head = nullptr;
 }
-/*)
-void List::pop_front()
-{
-	Node *temp = head;
-
-	head = head->pNext;
-
-	delete temp;
-
-	Size--;
-
-}*/
 
 List::~List(){
 /*	while (head){
@@ -28,7 +18,6 @@ List::~List(){
 	}
 	cout << endl << "List destroyed";*/
 }
-
 
 void List::push_back(TE data){
 	if(head == nullptr){
@@ -42,31 +31,6 @@ void List::push_back(TE data){
 		current->pNext = new Node(data);
 	}
 	Size++;
-}
-	
-
-Node& List::operator()(const int index){
-	Node *current = this -> head;
-	int counter = 0;
-	while(current!=nullptr){
-		if(counter == index){
-			return *current;
-		}
-		current = current->pNext;
-		counter++;
-	}
-}
-
-Node& List::pNext(const int index){	
-	Node *current = this -> head;
-	int counter = 0;
-	while(current!=nullptr){
-		if(counter == index){
-			return *current->pNext;
-		}
-		current = current->pNext;
-		counter++;
-	}
 }
 
 TE& List::operator[](const int index){	
