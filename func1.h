@@ -1,10 +1,10 @@
 #ifndef FUNC1_H
 #define FUNC1_H
+#include <cstddef>
 
 typedef double TE;
 
 struct Node{
-	public:
 		Node *pNext;
 		TE data;
 		Node(TE data = TE(), Node *pNext = nullptr){
@@ -15,17 +15,15 @@ struct Node{
 };
 
 struct List{
-	public:
 		List();
 		~List();
 		void push_back(TE data);
 		TE& operator[](const int index);
 		int Size;
 		Node *head;
-		
 };
 
 List merge(List L1, List L2);
-List sort(List L1);
+List sort(List L1, List L2);
 
 #endif
