@@ -48,17 +48,13 @@ List merge(List L1, List L2){
 	return merged;
 }
 
-List& sort(List L1, List L2)
+void sort(List &L1, List &L2)
 {
-	List merged;
-	for(int i=0; i<L1.Size;i++){
-		merged.push_back(L1[i]);
-	}
 	for(int i=0; i<L2.Size;i++){
-		merged.push_back(L2[i]);
+		L1.push_back(L2[i]);
 	}
-	Node *nextN = merged.head;
-	if (merged.head == NULL) return merged;
+	Node *nextN = L1.head;
+	if (L1.head == NULL) return void();
 	Node *node1;
 	Node *node2;
 	int check = 1;
@@ -66,7 +62,7 @@ List& sort(List L1, List L2)
 	while (check)
 	{
 		check = 0;
-		node1 = merged.head;
+		node1 = L1.head;
 		nextN = node1->pNext;
 		while (nextN != 0)
 		{
@@ -83,7 +79,7 @@ List& sort(List L1, List L2)
 		}
 	}
 
-	return merged;
+	return void();
 }
 
 List::~List()
@@ -94,7 +90,6 @@ List::~List()
 		delete head;
 		head = next;
 	}
-	delete Size;
 	delete head;
 	cout << endl << "List destructed";
 }
