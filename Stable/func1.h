@@ -10,12 +10,20 @@ struct Node{
 		Node(TE data = TE(), Node *pNext = nullptr){
 		this->data = data;
 		this->pNext = pNext;
-		}
+	}
+
 };
 
+struct List{
+		List();
+		~List();
+		void push_back(TE data);
+		TE& operator[](const int index);
+		int Size;
+		Node *head;
+};
 
-void push_back(Node* head,TE data);
-TE getData(Node* head, int index);
-void sort(Node *L1, Node *L2);
+List merge(List L1, List L2);
+void sort(List &L1, List &L2);
 
 #endif

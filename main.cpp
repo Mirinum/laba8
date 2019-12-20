@@ -4,46 +4,50 @@
 #include <iostream>	
 #include <fstream>
 #include <stdexcept>
+#include <string>
 
 
 using namespace std;
 
 int main(){
-	List L1;
-	List L2;
+	Node L1, L2;
 	try{
-	int k;
-	cout << "How much nodes do you need in L1? ";
-	cin >> k;
-	if(k<=0) throw 0;
-	for(int i=0; i<k;i++){
-		TE l;
-		cout << "Enter L1: ";
-		cin >> l;
-		L1.push_back(l);
+		int i,j,k;
+		cout << "Enter the size of L1 ";
+		cin >> i;
+		for(int a=0; a < i; a++){
+			TE g;
+			cout << "Enter L1: ";
+			cin >> g;
+			if(cin.fail()) throw 0;
+			push_back(&L1, g);
+		}
+		for(int a=0; a<i; a++){
+			cout << getData(&L1, a) << " ";
+		}
+		cout << "Enter the size of L2 ";
+		cin >> k;
+		for(int a=0; a < k; a++){
+			TE g;
+			cout << "Enter L2: ";
+			cin >> g;
+			if(cin.fail()) throw 0;
+			push_back(&L2, g);
+		}
+		for(int a=0; a<k; a++){
+			cout << getData(&L2, a) << " ";
+		}
+		cout <<endl;
+		sort(&L1, &L2);
+		Node* stuff = &L1;
+		while(stuff->pNext!=nullptr){
+			cout << stuff->data << " ";
+			stuff = stuff->pNext;
+		}
 	}
-	cout << "How much nodes do you need in L2? ";
-	cin >> k;
-	if(k<=0) throw 0;
-	for(int i=0; i<k;i++){
-		TE l;
-		cout << "Enter L2: ";
-		cin >> l;
-		L2.push_back(l);
-	}
-//	L1 = merge(L1, L2);
-	sort(L1, L2);
-	for(int l=0; l<L1.Size; l++){
-		cout << L1[l] << endl;
-	}
-	ofstream file("file.txt");
-	for(int l=0;l<L1.Size; l++){
-		file << L1[l] << " ";
-	}
-	}
-	catch(int){
-		cout << "ERROR";
-		return 1488;
+	catch(string a){
+		cout << "ERROR: " << a;
+		return 1337;
 	}
 	
 
