@@ -19,11 +19,8 @@ int main(){
 			TE g;
 			cout << "Enter L1: ";
 			cin >> g;
-			if(cin.fail()) throw 0;
+			if(cin.fail()) throw 2;
 			push_back(&L1, g);
-		}
-		for(int a=0; a<i; a++){
-			cout << getData(&L1, a) << " ";
 		}
 		cout << "Enter the size of L2 ";
 		cin >> k;
@@ -31,26 +28,28 @@ int main(){
 			TE g;
 			cout << "Enter L2: ";
 			cin >> g;
-			if(cin.fail()) throw 0;
+			if(cin.fail()) throw 2;
 			push_back(&L2, g);
-		}
-		for(int a=0; a<k; a++){
-			cout << getData(&L2, a) << " ";
 		}
 		cout <<endl;
 		sort(&L1, &L2);
-		Node* stuff = &L1;
+/*		Node* stuff = &L1;
 		while(stuff->pNext!=nullptr){
 			cout << stuff->data << " ";
 			stuff = stuff->pNext;
+		}*/
+		int f = i+k;
+		for(int i = 0; i < f; i++){
+			cout << getData(&L1, i) << endl;
 		}
 	}
-	catch(string a){
-		cout << "ERROR: " << a;
+	catch(const int a){
+		switch(a){
+			case 0: cout << "ERROR: bad index"; break;
+			case 1: cout << "ERROR: index < 0"; break;
+			case 2: cout << "ERROR: input error"; break;
+		}
 		return 1337;
 	}
-	
-
 	return 0;
-	
 }

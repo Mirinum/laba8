@@ -18,7 +18,7 @@ void push_back(Node* head, TE data){
 }
 
 double getData(Node* head, int index){
-	if(index<0) throw "Index < 0, error";
+	if(index<0) throw 1;
 	Node* temp = head;
 	int i;
 	while(i<index){
@@ -26,7 +26,7 @@ double getData(Node* head, int index){
 			temp = temp->pNext;
 			i++;
 		}
-		else throw "Bad index";
+		else throw 0;
 	}
 	return temp->data;
 }
@@ -38,7 +38,8 @@ void sort(Node *L1, Node *L2)
 		push_back(L1, stuff->data);
 		stuff = stuff->pNext;
 	}
-	Node *nextN = L1->head;
+	push_back(L1, stuff->data);
+	Node *nextN = L1;
 	if (L1 == nullptr) return void();
 	Node *node1;
 	Node *node2;
