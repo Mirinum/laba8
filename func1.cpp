@@ -2,59 +2,45 @@
 #include <assert.h>
 #include <stdexcept>
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-List::List(){
-	Size = 0;
-	head = nullptr;
-}
 
-void List::push_back(TE data){
-	if(head == nullptr){
-		head = new Node(data);
-	}
+void push_back(Node* head, TE data){
+	if(head->data == NULL) head->data = data;
 	else{
-		Node *current = this->head;
-		while(current->pNext != nullptr){
-			current = current->pNext;
+		while(head->pNext!=nullptr){
+			head = head->pNext;
 		}
-		current->pNext = new Node(data);
+		Node *temp = new Node(data);
+		head->pNext = temp;
 	}
-	Size++;
 }
 
-TE& List::operator[](const int index){	
-	Node *current = this -> head;
-	int counter = 0;
-	while(current!=nullptr){
-		if(counter == index){
-			return current->data;
+double getData(Node* head, int index){
+	if(index<0) throw 1;
+	Node* temp = head;
+	int i;
+	while(i<index){
+		if(temp->pNext!= nullptr){
+			temp = temp->pNext;
+			i++;
 		}
-		current = current->pNext;
-		counter++;
+		else throw 0;
 	}
-	throw 1;
+	return temp->data;
 }
 
-List merge(List L1, List L2){
-	List merged;
-	for(int i=0; i<L1.Size;i++){
-		merged.push_back(L1[i]);
-	}
-	for(int i=0; i<L2.Size;i++){
-		merged.push_back(L2[i]);
-	}
-	return merged;
-}
-
-void sort(List &L1, List &L2)
+void sort(Node *L1, Node *L2)
 {
-	for(int i=0; i<L2.Size;i++){
-		L1.push_back(L2[i]);
+	Node* stuff = L2;
+	while(stuff->pNext!=nullptr){
+		push_back(L1, stuff->data);
+		stuff = stuff->pNext;
 	}
-	Node *nextN = L1.head;
-	if (L1.head == NULL) return void();
+	push_back(L1, stuff->data);
+	Node *nextN = L1;
+	if (L1 == nullptr) return void();
 	Node *node1;
 	Node *node2;
 	int check = 1;
@@ -62,7 +48,7 @@ void sort(List &L1, List &L2)
 	while (check)
 	{
 		check = 0;
-		node1 = L1.head;
+		node1 = L1;
 		nextN = node1->pNext;
 		while (nextN != 0)
 		{
@@ -82,14 +68,3 @@ void sort(List &L1, List &L2)
 	return void();
 }
 
-List::~List()
-{
-	while (head != NULL)
-	{
-		Node *next = head->pNext;
-		delete head;
-		head = next;
-	}
-	delete head;
-	cout << endl << "List destructed";
-}
